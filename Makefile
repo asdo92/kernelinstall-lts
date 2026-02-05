@@ -28,16 +28,7 @@ $(TARGET): $(OBJ)
 kernel-install.o: kernel-install.c $(DISTRO_HEADERS)
 	$(CC) $(CFLAGS) -c kernel-install.c -o kernel-install.o
 
-# Reglas de internacionalización - ACTUALIZADA
-update-po:
-	xgettext --from-code=UTF-8 -k_ -kN_ -o po/kernel-install.pot kernel-install.c $(DISTRO_HEADERS)
-	msgmerge -U po/es.po po/kernel-install.pot
-
-compile-mo:
-	mkdir -p locale/es/LC_MESSAGES
-	msgfmt po/es.po -o locale/es/LC_MESSAGES/kernel-install.mo
-
-install: $(TARGET) compile-mo
+install: $(TARGET)
 	cp $(TARGET) /usr/local/bin/
 	cp -r locale/ /usr/local/share/
 
@@ -49,4 +40,4 @@ clean:
 	rm -f $(TARGET) $(OBJ)
 	rm -rf locale/
 
-.PHONY: all install uninstall clean update-po compile-mo
+.PHONY: all install uninstall clean
