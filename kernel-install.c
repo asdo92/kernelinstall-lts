@@ -232,7 +232,7 @@ int run_build_with_progress(const char *cmd, const char *source_dir) {
 
    
     char header_text[256];
-    snprintf(header_text, sizeof(header_text), _("Kernel Installer LTS Version %s %s"), APP_VERSION, _("by Alexia Michelle <https://github.com/alexiarstein/kernelinstall>"));
+    snprintf(header_text, sizeof(header_text), _("Kernel Installer LTS Version %s %s"), APP_VERSION, _("by Alexia (Modified by asdo92) <https://github.com/asdo92/kernelinstall-lts>"));
     int header_len = strnlen(header_text, sizeof(header_text));
     int header_x = (width - header_len) / 2;
     if (header_x < 0) header_x = 0;
@@ -501,7 +501,7 @@ void package_headers_deb(const char* home, const char* version, const char* tag)
         fprintf(f, "Package: linux-headers-%s\n", full_version);
         fprintf(f, "Version: %s-1\n", full_version);
         fprintf(f, "Architecture: amd64\n");
-        fprintf(f, "Maintainer: Alexia <root@goldendog.lan>\n"); // TODO: Cambiar por el nombre del usuario
+        fprintf(f, "Maintainer: Alexia & asdo92 <asdo92@duck.com>\n"); // TODO: Cambiar por el nombre del usuario
         fprintf(f, "Section: kernel\n");
         fprintf(f, "Priority: optional\n");
         fprintf(f, "Provides: linux-headers\n");
@@ -729,7 +729,7 @@ int main(void) {
     }
     textdomain("kernel-install");
     
-    const char *TAG = "-lexi-amd64";
+    const char *TAG = "asdo92-lts-amd64";
     const char *home = getenv("HOME");
     
     if (home == NULL) {
