@@ -1,6 +1,7 @@
 /*
  * Kernel Installer - Control Program
  * Copyright (C) 2025 Alexia Michelle <alexia@goldendoglinux.org>
+ * Modified by asdo92 <asdo92@duck.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -231,7 +232,7 @@ int run_build_with_progress(const char *cmd, const char *source_dir) {
 
    
     char header_text[256];
-    snprintf(header_text, sizeof(header_text), _("Kernel Installer Version %s %s"), APP_VERSION, _("by Alexia Michelle <https://github.com/alexiarstein/kernelinstall>"));
+    snprintf(header_text, sizeof(header_text), _("Kernel Installer LTS Version %s %s"), APP_VERSION, _("by Alexia Michelle <https://github.com/alexiarstein/kernelinstall>"));
     int header_len = strnlen(header_text, sizeof(header_text));
     int header_x = (width - header_len) / 2;
     if (header_x < 0) header_x = 0;
@@ -315,7 +316,7 @@ int run_build_with_progress(const char *cmd, const char *source_dir) {
                 mvwin(stats_win, 2, log_width);
                 
                 werase(header_win);
-                snprintf(header_text, sizeof(header_text), _("Kernel Installer Version %s %s"), APP_VERSION, _("by Alexia Michelle <https://github.com/alexiarstein/kernelinstall>"));
+                snprintf(header_text, sizeof(header_text), _("Kernel Installer LTS Version %s %s"), APP_VERSION, _("by Alexia Michelle <https://github.com/alexiarstein/kernelinstall>"));
                 header_len = strnlen(header_text, sizeof(header_text));
                 header_x = (width - header_len) / 2;
                 if (header_x < 0) header_x = 0;
@@ -600,8 +601,8 @@ int show_welcome_dialog() {
              "%s\\n\\n"
              "%s\\n\\n"
              "%s?\" 15 60",
-             _("Alexia Kernel Installer"),
-             _("Alexia Kernel Installer Version"),
+             _("Alexia Kernel Installer LTS"),
+             _("Alexia Kernel Installer LTS Version (Modified by asdo92)"),
              _("This program will download, compile and install the latest stable kernel from kernel.org."),
              _("The process may take up to three hours in some systems."),
              _("Do you wish to continue"));
@@ -797,7 +798,7 @@ int main(void) {
     char fetch_cmd[1024];
     snprintf(fetch_cmd, sizeof(fetch_cmd),
              "curl -s https://www.kernel.org/ | "
-             "grep -A1 'latest_link' | grep -oE '[0-9]+\\.[0-9]+(\\.[0-9]+)?' | "
+             "awk -F'<strong>|</strong>' '/longterm:/ {getline; print $2}' | "
              "head -1 > %s", tmp_file);
     run(fetch_cmd);
 
