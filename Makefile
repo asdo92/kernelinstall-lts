@@ -1,5 +1,6 @@
 # Kernel Installer Makefile
 # Author: Alexia Michelle <alexia@goldendoglinux.org>
+# Modified by asdo92 <asdo92@duck.com>
 # LICENSE: GNU GPL 3.0
 # --------------------------------------------------
 
@@ -16,7 +17,7 @@ endif
 CFLAGS = -Wall -Wextra -g -D_FORTIFY_SOURCE=2 $(NCURSES_CFLAGS)
 LDFLAGS = $(NCURSES_LIBS)
 OBJ = kernel-install.o
-TARGET = kernel-installer
+TARGET = kernel-installer-lts
 DISTRO_DIR = distro
 DISTRO_HEADERS = $(DISTRO_DIR)/common.h $(DISTRO_DIR)/debian.h $(DISTRO_DIR)/linuxmint.h $(DISTRO_DIR)/fedora.h $(DISTRO_DIR)/distros.h
 
