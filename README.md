@@ -39,8 +39,6 @@ Read answered existing questions, bug reports and or create your own at [Issues]
 ## Language Support
 
  * English
- * Spanish
- * Italian (Experimental)
 
 
 This is a simple tool that fetches the latest stable kernel release from [kernel.org](https://kernel.org)
