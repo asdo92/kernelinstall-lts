@@ -1,16 +1,16 @@
-# kernelinstall
+# kernelinstall-lts (Mod by asdo92)
 Downloads, configures, compiles and installs the latest stable kernel from kernel.org
 
 ## Running it:
 
  * 1 Clone the repository
- * 2 ```cd kernelinstall```
- * 3 ```./kernel-installer```
+ * 2 ```cd kernelinstall-lts```
+ * 3 ```./kernel-installer-lts```
 
 ## Compiling it:
 
  * 1 Clone the repository
- * 2 ```cd kernelinstall```
+ * 2 ```cd kernelinstall-lts```
  * 3 run the following:```bash compilar.sh```
 
 **Note:** compilar.sh only works for debian and ubuntu-based distros for now. If you want to compile it on other distros, you will need to do it manually.
@@ -18,6 +18,7 @@ Downloads, configures, compiles and installs the latest stable kernel from kerne
 
 ## Supported Distros:
 
+ * Debian 14 (Testing)
  * Debian 13
  * Debian 12
  * MX Linux
