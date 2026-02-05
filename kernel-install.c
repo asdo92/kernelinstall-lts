@@ -554,7 +554,7 @@ void install_debian_based_kernel(const char* home, const char* version, const ch
     
    
     snprintf(cmd, sizeof(cmd),
-             "cd %s/kernel_build && "
+             "cd %s/kernel_build && rm -rf *-dbg_*.deb && "
              "sudo dpkg -i linux-image-%s*%s*.deb",
              home, version, tag);
     run(cmd);
@@ -729,7 +729,7 @@ int main(void) {
     }
     textdomain("kernel-install");
     
-    const char *TAG = "asdo92-lts-amd64";
+    const char *TAG = "-asdo92-lts-amd64";
     const char *home = getenv("HOME");
     
     if (home == NULL) {
