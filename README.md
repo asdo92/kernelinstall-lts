@@ -14,7 +14,7 @@ Downloads, configures, compiles and installs the latest stable kernel from kerne
  * 3 run the following:```bash compilar.sh```
 
 **Note:** compilar.sh only works for debian and ubuntu-based distros for now. If you want to compile it on other distros, you will need to do it manually.
-```cd kernelinstall; make && sudo make install```
+```cd kernelinstall-lts; make && sudo make install```
 
 ## Supported Distros:
 
