@@ -797,9 +797,9 @@ int main(void) {
     
     char fetch_cmd[1024];
     snprintf(fetch_cmd, sizeof(fetch_cmd),
-             "curl -s https://www.kernel.org/ | "
-             "awk -F'<strong>|</strong>' '/longterm:/ {getline; print $2}' | "
-             "head -1 > %s", tmp_file);
+             "if [ -f /usr/local/bin/kernel-selector-lts ] ; "
+             "then kernel-selector-lts; "
+             "else ./kernel-selector-lts; fi");
     run(fetch_cmd);
 
     FILE *f = fopen(tmp_file, "r");
