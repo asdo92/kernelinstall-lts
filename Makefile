@@ -24,20 +24,26 @@ DISTRO_HEADERS = $(DISTRO_DIR)/common.h $(DISTRO_DIR)/debian.h $(DISTRO_DIR)/lin
 # Reglas de compilación
 $(TARGET): $(OBJ)
 	$(CC) $(OBJ) -o $(TARGET) $(LDFLAGS)
+	shc -rS -f kernel-selector-lts.sh -o kernel-selector-lts.o
+	mv kernel-selector-lts.sh.x.c kernel-selector-lts.c
+	gcc -static kernel-selector-lts.c -o kernel-selector-lts
+	rm -rf kernel-selector-lts.c
+	rm -rf kernel-selector-lts.o
+	rm -rf kernel-install.o
 
 kernel-install.o: kernel-install.c $(DISTRO_HEADERS)
 	$(CC) $(CFLAGS) -c kernel-install.c -o kernel-install.o
 
 install: $(TARGET)
 	cp $(TARGET) /usr/local/bin/
-	cp -r locale/ /usr/local/share/
+	cp kernel-selector-lts /usr/local/bin/
 
 uninstall:
 	rm -f /usr/local/bin/$(TARGET)
-	rm -rf /usr/local/share/locale/*/LC_MESSAGES/kernel-install.mo
+	rm -f /usr/local/bin/kernel-selector-lts
 
 clean:
 	rm -f $(TARGET) $(OBJ)
-	rm -rf locale/
+	rm -f kernel-selector-lts
 
 .PHONY: all install uninstall clean
