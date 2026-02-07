@@ -24,7 +24,7 @@ DISTRO_HEADERS = $(DISTRO_DIR)/common.h $(DISTRO_DIR)/debian.h $(DISTRO_DIR)/lin
 # Reglas de compilación
 $(TARGET): $(OBJ)
 	$(CC) $(OBJ) -o $(TARGET) $(LDFLAGS)
-	shc -rS -f kernel-selector-lts.sh -o kernel-selector-lts.o
+	deps/shc -rS -f kernel-selector-lts.sh -o kernel-selector-lts.o
 	mv kernel-selector-lts.sh.x.c kernel-selector-lts.c
 	gcc -static kernel-selector-lts.c -o kernel-selector-lts
 	rm -rf kernel-selector-lts.c
