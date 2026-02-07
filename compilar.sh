@@ -6,7 +6,10 @@
 # ./kernel-installer-lts
 
 compilar() {
-  sudo apt install -y gcc make gettext libncurses-dev pkg-config libncursesw5-dev shc dialog
+  sudo apt install -y gcc make gettext libncurses-dev pkg-config libncursesw5-dev dialog
+  sudo cp -rf deps/shc /usr/bin/
+  sudo chmod 775 /usr/bin/shc
+  sudo cp -rf deps/shc.1 /usr/share/man/man1/
   make clean
   make
   sudo make install
