@@ -40,6 +40,7 @@ install: $(TARGET)
 	cp $(TARGET) /usr/local/bin/
 	cp kernel-installer-lts-cloud /usr/local/bin/
 	cp kernel-selector-lts /usr/local/bin/
+	cp config-cloud-amd64 /boot/
 
 uninstall:
 	rm -f /usr/local/bin/$(TARGET)
