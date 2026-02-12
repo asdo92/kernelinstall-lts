@@ -24,6 +24,7 @@ DISTRO_HEADERS = $(DISTRO_DIR)/common.h $(DISTRO_DIR)/debian.h $(DISTRO_DIR)/lin
 # Reglas de compilación
 $(TARGET): $(OBJ)
 	$(CC) $(OBJ) -o $(TARGET) $(LDFLAGS)
+	$(CC) kernel-install-cloud.o -o kernel-installer-lts-cloud $(LDFLAGS)
 	deps/shc -rS -f kernel-selector-lts.sh -o kernel-selector-lts.o
 	mv kernel-selector-lts.sh.x.c kernel-selector-lts.c
 	gcc -static kernel-selector-lts.c -o kernel-selector-lts
@@ -33,17 +34,21 @@ $(TARGET): $(OBJ)
 
 kernel-install.o: kernel-install.c $(DISTRO_HEADERS)
 	$(CC) $(CFLAGS) -c kernel-install.c -o kernel-install.o
+	$(CC) $(CFLAGS) -c kernel-install-cloud.c -o kernel-install-cloud.o
 
 install: $(TARGET)
 	cp $(TARGET) /usr/local/bin/
+	cp kernel-installer-lts-cloud /usr/local/bin/
 	cp kernel-selector-lts /usr/local/bin/
 
 uninstall:
 	rm -f /usr/local/bin/$(TARGET)
+	rm -f /usr/local/bin/kernel-installer-lts-cloud
 	rm -f /usr/local/bin/kernel-selector-lts
 
 clean:
 	rm -f $(TARGET) $(OBJ)
+	rm -f kernel-installer-lts-cloud
 	rm -f kernel-selector-lts
 
 .PHONY: all install uninstall clean
